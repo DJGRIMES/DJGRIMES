@@ -1,0 +1,43 @@
+Wallet Address Minting
+
+Goal:
+To decrease the difficulty of onboarding new web3 users.
+
+Abstract:
+New users are provided a URL. This page displays information about a smart contract: address, supply. If enough funds are available, the user is able to create a new address and key. Then funds are transferred from contract address to this new address. Instructions are then given on wallet software and the importance of self ownership. New funds can be sent to the contract address by stakeholders for continued onboarding.
+
+Pseudo:
+Both public and private keys are generated for the end uses with web3.eth.account.create. Then web3 interacts with a Solidity contract to move funds to the newly created account.
+
+Smart contract (newAddress, contractAddress, ...) {
+ 
+  transfer: called as part of newAddress creation in web3. A preset number of funds are moved from the onboarding wallet to the newly minted wallet. This default could be set at initialization.
+ 
+  // load 'recharge': allows more funds to be added to the address for transfer. This could be loaded at initialization, or by ambassadors as needed.
+ 
+  // read: get information about the contract.
+}
+
+
+Technologies:
+Node
+React
+web3.js
+Solidity
+// need a QR tool
+
+
+Notes:
+Actions can be limited by the supply of the contract address.
+
+An initialization layer could be created to create new contracts with different parameters: funding, transfer value, total allowed addresses, total minted addresses, ambassador... depending on complexity of variables in the tool read could return more than supply.
+
+QR implementation will be important for in person easy of onboarding and recharging.
+
+Token minting can have a similar architecture.
+
+
+Concerns:
+1) I have worked with the main ethereum network with web3, but not polygon. Assuming they are the same (erc20).
+2) There are centralization and security issues with creating privet keys this way. Would education about moving the funds to a secure, wallet issued, address be enough to overcome this?
+3) Handling errors, testing on a local chain. 
